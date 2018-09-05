@@ -32,7 +32,7 @@ const createDirectory = (dir) => {
                 fs.unlinkSync(curPath);
             }
         });
-        fs.rmdirSync(path);
+        fs.rmdirSync(dir);
     }
     fs.mkdirSync(dir)
 }
