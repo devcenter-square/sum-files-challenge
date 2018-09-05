@@ -35,6 +35,7 @@ const createDirectory = (dir, shouldDelete = false) => {
             });
             fs.rmdirSync(dir);
         }
+        return;
     }
     fs.mkdirSync(dir)
 }
