@@ -22,17 +22,20 @@ function saveFile(filepath, content) {
     fs.writeFileSync(filepath, content, { encoding: 'utf8', flag: 'w+' })
 }
 
-const createDirectory = (dir) => {
+const createDirectory = (dir, shouldDelete = false) => {
     if (fs.existsSync(dir)) {
-        fs.readdirSync(dir).forEach(function(file,index){
-            const curPath = path.join(dir, file);
-            if(fs.lstatSync(curPath).isDirectory()) { // recurse
-                throw new Error('cannot delete directory: ' + curPath)
-            } else { // delete file
-                fs.unlinkSync(curPath);
-            }
-        });
-        fs.rmdirSync(path);
+        if (shouldDelete) {
+            fs.readdirSync(dir).forEach(function(file,index){
+                const curPath = path.join(dir, file);
+                if(fs.lstatSync(curPath).isDirectory()) { // recurse
+                    
+                } else { // delete file
+                    fs.unlinkSync(curPath);
+                }
+            });
+            fs.rmdirSync(dir);
+        }
+        return;
     }
     fs.mkdirSync(dir)
 }
@@ -43,7 +46,7 @@ function generateFiles(min = 1, max = 10) {
     const folderName = `${minFileName}-${maxFileName}`
     const directory = path.join(__dirname, `../files/${folderName}`)
 
-    createDirectory(directory)
+    createDirectory(directory, true)
 
     console.log('generating:', minFileName, maxFileName)
 
@@ -53,7 +56,10 @@ function generateFiles(min = 1, max = 10) {
     }
 }
 
-const i = Number(process.argv.slice(2)[0]) || (fs.existsSync(dir) ? fs.readdirSync(path.join(__dirname, '../files')).length : 0)
+const dir = path.join(__dirname, '../files')
+const i = Number(process.argv.slice(2)[0]) || (fs.existsSync(dir) ? fs.readdirSync(dir).length : 0)
+
+createDirectory(dir)
 
 const min = (i * 10) + 1
 
