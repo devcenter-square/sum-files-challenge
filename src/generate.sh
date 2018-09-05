@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-counter=0
-while [ $counter -le 10 ]
+counter=11
+while [ $counter -le 19 ]
 do
 node ./src/index.js $counter
 git add .
