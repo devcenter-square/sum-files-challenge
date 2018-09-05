@@ -53,7 +53,7 @@ function generateFiles(min = 1, max = 10) {
     }
 }
 
-const i = Number(process.argv.slice(2)[0]) || fs.readdirSync(path.join(__dirname, '../files')).length
+const i = Number(process.argv.slice(2)[0]) || (fs.existsSync(dir) ? fs.readdirSync(path.join(__dirname, '../files')).length : 0)
 
 const min = (i * 10) + 1
 
