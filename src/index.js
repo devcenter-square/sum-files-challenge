@@ -22,17 +22,19 @@ function saveFile(filepath, content) {
     fs.writeFileSync(filepath, content, { encoding: 'utf8', flag: 'w+' })
 }
 
-const createDirectory = (dir) => {
+const createDirectory = (dir, shouldDelete = false) => {
     if (fs.existsSync(dir)) {
-        fs.readdirSync(dir).forEach(function(file,index){
-            const curPath = path.join(dir, file);
-            if(fs.lstatSync(curPath).isDirectory()) { // recurse
-                
-            } else { // delete file
-                fs.unlinkSync(curPath);
-            }
-        });
-        fs.rmdirSync(dir);
+        if (shouldDelete) {
+            fs.readdirSync(dir).forEach(function(file,index){
+                const curPath = path.join(dir, file);
+                if(fs.lstatSync(curPath).isDirectory()) { // recurse
+                    
+                } else { // delete file
+                    fs.unlinkSync(curPath);
+                }
+            });
+            fs.rmdirSync(dir);
+        }
     }
     fs.mkdirSync(dir)
 }
@@ -43,7 +45,7 @@ function generateFiles(min = 1, max = 10) {
     const folderName = `${minFileName}-${maxFileName}`
     const directory = path.join(__dirname, `../files/${folderName}`)
 
-    createDirectory(directory)
+    createDirectory(directory, true)
 
     console.log('generating:', minFileName, maxFileName)
 
