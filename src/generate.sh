@@ -1,7 +1,8 @@
 #!/usr/bin/bash
 
-counter=4
-while [ $counter -le 100 ]
+git checkout -b "files/generate"
+counter=0
+while [ $counter -le 10 ]
 do
 node ./src/index.js $counter
 git add .

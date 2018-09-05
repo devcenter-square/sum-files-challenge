@@ -37,7 +37,7 @@ const createDirectory = (dir) => {
     fs.mkdirSync(dir)
 }
 
-function generateFiles(min = 1, max = 1000) {
+function generateFiles(min = 1, max = 10) {
     const minFileName = pad(min, 6)
     const maxFileName = pad(max, 6)
     const folderName = `${minFileName}-${maxFileName}`
@@ -55,8 +55,8 @@ function generateFiles(min = 1, max = 1000) {
 
 const i = Number(process.argv.slice(2)[0]) || fs.readdirSync(path.join(__dirname, '../files')).length
 
-const min = (i * 1000) + 1
+const min = (i * 10) + 1
 
-const max = ((i + 1) * 1000)
+const max = ((i + 1) * 10)
 
 generateFiles(min, max)
