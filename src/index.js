@@ -27,7 +27,7 @@ const createDirectory = (dir) => {
         fs.readdirSync(dir).forEach(function(file,index){
             const curPath = path.join(dir, file);
             if(fs.lstatSync(curPath).isDirectory()) { // recurse
-                throw new Error('cannot delete directory: ' + curPath)
+                
             } else { // delete file
                 fs.unlinkSync(curPath);
             }
