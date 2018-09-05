@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-counter=90
+counter=0
 while [ $counter -le 99 ]
 do
 node ./src/index.js $counter
