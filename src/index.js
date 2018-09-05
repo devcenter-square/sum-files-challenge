@@ -56,6 +56,8 @@ function generateFiles(min = 1, max = 10) {
 const dir = path.join(__dirname, '../files')
 const i = Number(process.argv.slice(2)[0]) || (fs.existsSync(dir) ? fs.readdirSync(dir).length : 0)
 
+createDirectory(dir)
+
 const min = (i * 10) + 1
 
 const max = ((i + 1) * 10)
