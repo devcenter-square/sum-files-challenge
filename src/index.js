@@ -4,7 +4,7 @@ const pad = require('./utils/pad')
 
 function generateContent() {
     let content = []
-    for (let i = 1; i <= 10000; i++) {
+    for (let i = 1; i <= 1000; i++) {
         let line = []
         for (let j = 1; j <= 100; j++) {
             line.push(
